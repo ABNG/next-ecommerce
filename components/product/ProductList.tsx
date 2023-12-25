@@ -25,9 +25,12 @@ const ProductList = async ({ categoryId }: Props) => {
       {data.length == 0 ? (
         <h1>No Product Available</h1>
       ) : (
-        data.map((product: any) => (
-          <Product product={product} key={product.id} />
-        ))
+        data.map(
+          (product: any) =>
+            (product.images[0] as string).startsWith("https") && (
+              <Product product={product} key={product.id} />
+            )
+        )
       )}
     </>
   );

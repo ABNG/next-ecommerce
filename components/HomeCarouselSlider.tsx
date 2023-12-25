@@ -21,7 +21,9 @@ const HomeCarouselSlider = async ({ categories }: Props) => {
       navigation
       autoplay
       modules={[Navigation, Autoplay]}
-      onClick={(s) => router.push(`/category/${s.activeIndex}`)}
+      onClick={(s) =>
+        router.push(`/category/${s.activeIndex}`, { scroll: false })
+      }
     >
       {categoryList.map((category: any) => (
         <SwiperSlide key={category.id}>

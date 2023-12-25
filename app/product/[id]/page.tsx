@@ -34,7 +34,7 @@ const ProductDetail = async ({ params: { id } }: Props) => {
 
   return (
     <div className="flex flex-col items-center sm:justify-center sm:flex-row mt-16 mx-4 sm:mx-8 xl:mx-0 overflow-hidden">
-      <div className="w-full h-96 relative sm:w-1/3 sm:h-64 overflow-hidden">
+      <div className="w-full h-96 relative sm:w-1/3 sm:h-64 overflow-hidden animate__animated animate__bounceIn">
         <Image
           className="rounded-xl object-center"
           src={product.images[0]}

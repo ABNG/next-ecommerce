@@ -11,7 +11,7 @@ type Props = {
 
 const Product = ({ product }: Props) => {
   return (
-    <Link href={`/product/${product.id}`}>
+    <Link href={`/product/${product.id}`} scroll={false} className="w-full">
       <Card className="group transition-shadow hover:shadow-xl cursor-pointer">
         <CardContent className="p-0">
           <div className="w-full h-48 relative overflow-hidden rounded-t-lg">

@@ -27,7 +27,7 @@ const SignInButton = ({ text, className }: Props) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>{text}</Button>
+        <Button className="animate-heartbeat">{text}</Button>
         {/* <Button className={`bg-red-300 ${className}`}>{text}</Button> */}
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">

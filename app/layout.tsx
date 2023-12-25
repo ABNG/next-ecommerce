@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import "animate.css";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/lib/theme-provider";
 import { ToastContainer } from "@/lib/toast_container";
@@ -26,7 +27,7 @@ export default async function RootLayout({
         <script src="http://localhost:8097"></script>
       </head> */}
       {/* `${inter.className} overscroll-y-none` */}
-      <body className={inter.className}>
+      <body className={`${inter.className} w-full min-h-screen`}>
         <SessionProvider session={session}>
           <ThemeProvider
             attribute="class"
