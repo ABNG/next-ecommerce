@@ -1,28 +1,26 @@
 import Quantity from "@/components/Quantity";
 import { Button } from "@/components/ui/button";
-import { api } from "@/lib/axios_interceptor";
 import { StarFilledIcon } from "@radix-ui/react-icons";
 import { ShoppingCartIcon } from "lucide-react";
 import Image from "next/image";
-import React from "react";
 
 export async function generateStaticParams() {
-  const response = await api.get("products");
-
-  const ids: [{ id: string }] = response.data.map((e: any) => {
-    return { id: e.id.toString() };
-  });
-  return ids;
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}products`);
+  const products = await response.json();
+  return products.map((product: any) => ({
+    id: product.id.toString(),
+  }));
 }
 
 const getProductDetail = async (id: number) => {
-  try {
-    const response = await api.get(`products/${id}`);
-    return response.data;
-  } catch (e: any) {
-    console.log(e);
-    throw new Error(e.toString());
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}products/${id}`
+  );
+  if (!response.ok) {
+    console.log(response);
+    throw new Error("Something went wrong");
   }
+  return response.json();
 };
 
 type Props = {

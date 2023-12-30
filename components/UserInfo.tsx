@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import SignInButton from "./SignInButton";
 import { signOut, useSession } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";

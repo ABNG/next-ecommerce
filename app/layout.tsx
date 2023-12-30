@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/lib/theme-provider";
 import { ToastContainer } from "@/lib/toast_container";
 import { SessionProvider } from "@/lib/session_provider";
 import { getServerSession } from "next-auth";
+import { ReactQueryProvider } from "@/lib/react_query_provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -28,17 +29,19 @@ export default async function RootLayout({
       </head> */}
       {/* `${inter.className} overscroll-y-none` */}
       <body className={`${inter.className} w-full min-h-screen`}>
-        <SessionProvider session={session}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Navbar />
-            <div className="xl:mx-28">{children}</div>
-          </ThemeProvider>
-        </SessionProvider>
+        <ReactQueryProvider>
+          <SessionProvider session={session}>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Navbar />
+              <div className="xl:mx-28">{children}</div>
+            </ThemeProvider>
+          </SessionProvider>
+        </ReactQueryProvider>
         <ToastContainer />
       </body>
     </html>

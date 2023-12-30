@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import HashLoader from "react-spinners/HashLoader";
 
 type Props = {};

@@ -1,6 +1,6 @@
 "use client";
-import { Minus, MinusCircleIcon, Plus, PlusCircleIcon } from "lucide-react";
-import React, { useState } from "react";
+import { Minus, Plus } from "lucide-react";
+import { useState } from "react";
 import { Button } from "./ui/button";
 
 type Props = {};

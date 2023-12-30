@@ -1,5 +1,4 @@
 "use client";
-import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -7,23 +6,36 @@ import "swiper/css/autoplay";
 import { Autoplay, Navigation } from "swiper/modules";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { api } from "@/lib/axios_interceptor";
-type Props = {
-  categories: Promise<any>;
+import { useQuery } from "@tanstack/react-query";
+import Loading from "@/app/loading";
+type Props = {};
+
+const getCategories = async () => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}categories`);
+  return response.json();
 };
 
-const HomeCarouselSlider = async ({ categories }: Props) => {
+const HomeCarouselSlider = () => {
   const router = useRouter();
-  const categoryList = await categories;
+  const {
+    isPending,
+    error,
+    data: categoryList,
+  } = useQuery({
+    queryKey: ["categories"],
+    queryFn: getCategories,
+  });
+
+  if (isPending) return <Loading />;
+
+  if (error) return "An error has occurred: " + error.message;
   return (
     <Swiper
       className="w-full aspect-video max-h-36 sm:max-h-48 md:max-h-60 lg:max-h-72 xl:max-h-80 2xl:max-h-96"
       navigation
       autoplay
       modules={[Navigation, Autoplay]}
-      onClick={(s) =>
-        router.push(`/category/${s.activeIndex}`, { scroll: false })
-      }
+      onClick={(s) => router.push(`/category/${s.activeIndex}`)}
     >
       {categoryList.map((category: any) => (
         <SwiperSlide key={category.id}>

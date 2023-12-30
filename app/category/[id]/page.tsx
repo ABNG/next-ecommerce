@@ -1,6 +1,4 @@
-import AppLoading from "@/components/loading/AppLoading";
 import ProductList from "@/components/product/ProductList";
-import React, { Suspense } from "react";
 
 type Props = {
   params: { id: number };

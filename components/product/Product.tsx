@@ -1,7 +1,6 @@
-import React from "react";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
-import { RemoveFormattingIcon, ShoppingCartIcon, Star } from "lucide-react";
+import { ShoppingCartIcon } from "lucide-react";
 import { StarFilledIcon } from "@radix-ui/react-icons";
 import { Button } from "../ui/button";
 import Link from "next/link";
@@ -11,7 +10,7 @@ type Props = {
 
 const Product = ({ product }: Props) => {
   return (
-    <Link href={`/product/${product.id}`} scroll={false} className="w-full">
+    <Link href={`/product/${product.id}`} className="w-full">
       <Card className="group transition-shadow hover:shadow-xl cursor-pointer">
         <CardContent className="p-0">
           <div className="w-full h-48 relative overflow-hidden rounded-t-lg">

@@ -1,17 +1,18 @@
-import { api } from "@/lib/axios_interceptor";
-import React from "react";
 import Product from "./Product";
 
 const getProducts = async (categoryId?: number) => {
-  try {
-    const response = await api.get(
-      categoryId ? `products/?categoryId=${categoryId}` : "products"
-    );
-    return response.data;
-  } catch (e: any) {
-    console.log(e);
-    throw new Error(e.toString());
+  const res = await fetch(
+    categoryId
+      ? `${process.env.NEXT_PUBLIC_BASE_URL}products/?categoryId=${categoryId}`
+      : `${process.env.NEXT_PUBLIC_BASE_URL}products`
+  );
+
+  if (!res.ok) {
+    console.log(res);
+    throw new Error("Something went wrong");
   }
+
+  return res.json();
 };
 
 type Props = {
